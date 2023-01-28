@@ -16,7 +16,7 @@ model User {
   firstName         String
   lastName          String
   passWord          String
-  isActive          String
+  isActive          Boolean
 
   @@map("users")
 }
