@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+    teachteam-mysql-db:
+        image: mysql:8.0
+        container_name: teachteam-mysql-db
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: my_secret_password
+            MYSQL_DATABASE: app_db
+            MYSQL_USER: db_user
+            MYSQL_PASSWORD: db_user_pass
+        restart: always
+        volumes: 
+          - dblabphp:/var/lib/mysql
+volumes:
+  dblabphp:
