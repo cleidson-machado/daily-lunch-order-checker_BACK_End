@@ -17,6 +17,40 @@ model User {
   lastName          String
   passWord          String
   isActive          Boolean
+  creationDayTime   DateTime
 
   @@map("users")
+}
+
+model LunchMealType {
+  id                String @id @default(uuid())
+  idLunchMealMenu   String //RELACIONAMENTO!?? O MENU DA REFEIÇÃO??
+  name              String //REFEIÇÃO SIMPES PADRÃO
+  description       String
+  creationDayTime   String
+
+  @@map("lunchMealTypes")
+}
+
+model LunchMealMenu {
+  id                String @id @default(uuid())
+  name              String
+  type              String //FIT OU NORMAL
+  averageCalories   Decimal
+  averageWeight     Decimal
+  averagePrice      Decimal
+  nameDayWeek       String
+  description       String
+  creationDayTime   DateTime
+
+  @@map("lunchMealMenus")
+}
+
+model OrderForLunch {
+  id                String @id @default(uuid())
+  idLunchMealType   String //RELACIONAMENTO!?? A MARMITA?
+  idUser            String
+  itemValue         Decimal
+  theAmount         Int //A QUANTIDADE
+  orderDayAndTime   DateTime
 }
