@@ -10,6 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+//O USUÁRIO
 model User {
   id                String @id @default(uuid())
   idCompanyEmployee String
@@ -17,40 +18,60 @@ model User {
   lastName          String
   passWord          String
   isActive          Boolean
-  creationDayTime   DateTime
-
-  @@map("users")
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime
+  OrderForLunch     OrderForLunch[] //PEDIDO //VINCULO VIA SOMENTE CODIGO PRA FECHAR O RELACIONAMENTO
 }
 
-model LunchMealType {
+//A MARMITA...
+model LunchBoxType {
   id                String @id @default(uuid())
-  idLunchMealMenu   String //RELACIONAMENTO!?? O MENU DA REFEIÇÃO??
-  name              String //REFEIÇÃO SIMPES PADRÃO
+  name              String //MARMITA NORMAL SIMPLES
   description       String
-  creationDayTime   String
-
-  @@map("lunchMealTypes")
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime
+  LunchMealMenu     LunchMealMenu[] //VINCULO VIA SOMENTE CODIGO PRA FECHAR O RELACIONAMENTO
 }
 
+//O MENU DAS REFIÇÕES...
 model LunchMealMenu {
   id                String @id @default(uuid())
   name              String
-  type              String //FIT OU NORMAL
+  type              String  //FIT OU NORMAL.. USAR ENUNS?
   averageCalories   Decimal
   averageWeight     Decimal
   averagePrice      Decimal
-  nameDayWeek       String
+  dessertName       String  //PARA O NOME DA SOBREMESA APENAS...
+  nameDayWeek       String  //NOME DO DIA DA SEMANA DO MENU
   description       String
-  creationDayTime   DateTime
-
-  @@map("lunchMealMenus")
+  rateQualityNumber Int     //NOTA DE AVALIAÇÃO
+  imageLinkPath     String  //CAMINHO OU URL DA IMAGEN DA MARMITA / CARDÁPIO
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime
+  lunchBox          LunchBoxType @relation(fields: [lunchBoxId], references: [id]) // RELACIONAMENTO
+  lunchBoxId        String  //CAMPO QUE ARMAZENA A FK
+  OrderForLunch     OrderForLunch[] //VINCULO VIA SOMENTE CODIGO PRA FECHAR O RELACIONAMENTO
 }
 
+//O PEDIDO
 model OrderForLunch {
   id                String @id @default(uuid())
-  idLunchMealType   String //RELACIONAMENTO!?? A MARMITA?
-  idUser            String
-  itemValue         Decimal
-  theAmount         Int //A QUANTIDADE
-  orderDayAndTime   DateTime
+  orderValue        Decimal //VALOR DO PEDIDO.. MULTIPLICA O PREÇO PELA QUANTIDADE
+  amount            Int     //A QUANTIDADE
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime
+  lunchMeal         LunchMealMenu @relation(fields: [lunchMealId], references: [id]) // RELACIONAMENTO
+  lunchMealId       String //CAMPO QUE ARMAZENA A FK
+  userOder          User @relation(fields: [userOderId], references: [id]) // RELACIONAMENTO
+  userOderId        String //CAMPO QUE ARMAZENA A FK
+}
+
+//A TABELA QUE VAI ARMAZENAR OS PARÂMETROS DE CONFIGURALÇÃO
+model AppScopeConfig {
+  id                String @id @default(uuid())
+  userLimitbuy      Int       //O LIMITE DE COMPRAS / PEDIDOS DOS USUÁRIOS POR DIA
+  dailyTimeout      Int       //LIMITE DE TEMPO POR DIA PARA PEDIDOS --> EM MINUTOS.. CONVERSÃO!?
+  startDailyTimeout DateTime  //INÍCIO DA JANELA DE PEDIDOS DIÁRIA
+  endtDailyTimeout  DateTime  //FIM DA JANELA DE PEDIDOS DIÁRIA
+  isActive          Boolean   //CONFIGURAÇÃO ATIVA... OBRIGATÓRIO HAVER PELO MENOS UMA ATIVA??.. SE NÃO ACHAR ALGUMA ATIVA ou estiver INATIVA DEIXAR O PADRÃO DO COD.
 }
