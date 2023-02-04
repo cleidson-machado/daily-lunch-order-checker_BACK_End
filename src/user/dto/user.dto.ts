@@ -5,4 +5,6 @@ export type UserDTO = {
     lastName: string;
     passWord: string;
     isActive: boolean;
+    createdAt: Date | null
+    updatedAt: Date | null
 }
