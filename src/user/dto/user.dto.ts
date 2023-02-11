@@ -1,3 +1,6 @@
+   /**
+    * DTO-FULL: Padrão que representa a Entidade / Model no Prisma para Usuário...
+    */
 export class UserDTO {
     /**
      * Esse atributo é baseado no número de registro do empregado Cassems. Geralmente apenas 04 digitos.
@@ -13,7 +16,7 @@ export class UserDTO {
 
     /**
      * Reservado para o sobre-nome completo.
-     * @example da Silva Chavier
+     * @example Silva
      */
     lastName: string;
 
@@ -33,11 +36,11 @@ export class UserDTO {
      * Armazena automaticamente a data de criação do registro.
      * @example 2023-02-07T22:54:19.505Z
      */
-    createdAt: Date | null
+    createdAt?: Date | null
 
     /**
      * Armazena automaticamente a data de alteração do registro.
      * @example 2023-02-07T22:54:19.505Z
      */
-    updatedAt: Date | null
+    updatedAt?: Date | null
 }

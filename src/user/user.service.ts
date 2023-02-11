@@ -1,7 +1,7 @@
-import { Prisma } from '.prisma/client';
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/database/prisma.service';
 import { UserDTO } from 'src/user/dto/user.dto'
+import { UserEditFullNameOnlyDTO } from './dto/user-edit-fullNameOnly.dto'; 
 
 @Injectable()
 export class UserService {
@@ -34,6 +34,16 @@ export class UserService {
     //EXCLUDE ONE
     async delete(id: string){
         return await this.prisma.user.delete({
+            where: {
+                id,
+            },
+        });
+    }
+
+    //NEW DTO JUST FOR TEST - Update the Full Name Only
+    async updateFullName(id: string, data: UserEditFullNameOnlyDTO){
+        return await this.prisma.user.update({
+            data,
             where: {
                 id,
             },
