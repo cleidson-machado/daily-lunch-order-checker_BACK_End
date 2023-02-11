@@ -11,6 +11,7 @@ async function bootstrap() {
     .setDescription ('Criação de Documentação Inicial da API que gerencia pedido de refeições...')
     .setVersion('1.0')
     .addTag('Users')
+    .addTag('LunchBoxType')
     .build()
 
   const document = SwaggerModule.createDocument(app, config);

@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/database/prisma.service';
 import { UserDTO } from 'src/user/dto/user.dto'
+
 import { UserEditFullNameOnlyDTO } from './dto/user-edit-fullNameOnly.dto'; 
 
 @Injectable()
@@ -16,9 +17,18 @@ export class UserService {
         return theUser
     }
 
-    //LIST ALL
+    //FIND ALL
     async findAll(){
-        return this.prisma.user.findMany();
+        return await this.prisma.user.findMany();
+    }
+
+    //FIND ONE
+    async findOne(id: string) {
+    return await this.prisma.user.findUnique({
+        where: {
+            id,
+        },
+    });
     }
 
     //EDIT ONE
@@ -31,8 +41,8 @@ export class UserService {
         });
     }
 
-    //EXCLUDE ONE
-    async delete(id: string){
+    //DELETE ONE
+    async remove(id: string){
         return await this.prisma.user.delete({
             where: {
                 id,
