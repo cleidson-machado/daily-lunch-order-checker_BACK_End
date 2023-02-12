@@ -3,8 +3,8 @@
      */
 export class LunchBoxTypeDto {
     /**
-     * Reservado para o primeiro nome apenas.
-     * @example Marmita Normal Simples
+     * Reservado para o Nome / Título da Marmita.
+     * @example Marmita Normal Simples...
      */
     name: string
 

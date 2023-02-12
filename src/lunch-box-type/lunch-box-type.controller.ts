@@ -25,13 +25,13 @@ export class LunchBoxTypeController {
   }
 
   @Put(':id')
-  async updateAllAttributes(@Param('id') id: string, @Body() lunchBoxTypeDto: LunchBoxTypeDto) {
-    return this.lunchBoxTypeService.update(id, lunchBoxTypeDto);
+  async updateAllAttributes(@Param('id') id: string, @Body() data: LunchBoxTypeDto) {
+    return this.lunchBoxTypeService.update(id, data);
   }
 
   @Patch(':id')
-  async updatePartialAttributes(@Param('id') id: string, @Body() lunchBoxTypeDto: LunchBoxTypeDto) {
-    return this.lunchBoxTypeService.update(id, lunchBoxTypeDto);
+  async updatePartialAttributes(@Param('id') id: string, @Body() data: LunchBoxTypeDto) {
+    return this.lunchBoxTypeService.update(id, data);
   }
 
   @Delete(':id')

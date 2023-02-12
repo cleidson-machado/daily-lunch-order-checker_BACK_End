@@ -12,7 +12,7 @@ export class LunchBoxTypeService {
     const theBox = await this.prisma.lunchBoxType.create({
       data,
     });
-    return theBox
+    return theBox;
   }
 
   //FIND ALL
