@@ -10,32 +10,32 @@ export class LunchBoxTypeController {
   constructor(private readonly lunchBoxTypeService: LunchBoxTypeService) {}
 
   @Post('/add')
-  async create(@Body() data: LunchBoxTypeDto) {
+  create(@Body() data: LunchBoxTypeDto) {
     return this.lunchBoxTypeService.create(data);
   }
 
   @Get('/listAll')
-  async findAll() {
+  findAll() {
     return this.lunchBoxTypeService.findAll();
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: string) {
     return this.lunchBoxTypeService.findOne(id);
   }
 
   @Put(':id')
-  async updateAllAttributes(@Param('id') id: string, @Body() data: LunchBoxTypeDto) {
+  updateAllAttributes(@Param('id') id: string, @Body() data: LunchBoxTypeDto) {
     return this.lunchBoxTypeService.update(id, data);
   }
 
   @Patch(':id')
-  async updatePartialAttributes(@Param('id') id: string, @Body() data: LunchBoxTypeDto) {
+  updatePartialAttributes(@Param('id') id: string, @Body() data: LunchBoxTypeDto) {
     return this.lunchBoxTypeService.update(id, data);
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: string) {
+   remove(@Param('id') id: string) {
     return this.lunchBoxTypeService.remove(id);
   }
 }

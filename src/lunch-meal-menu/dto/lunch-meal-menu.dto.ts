@@ -1,7 +1,7 @@
     /**
      * DTO-FULL: Padrão que representa a Entidade / Model no Prisma para o Menu...
      */
-import { Prisma } from "@prisma/client"
+import { Decimal } from "@prisma/client/runtime"
 
 export class LunchMealMenuDto {
     /**
@@ -17,22 +17,22 @@ export class LunchMealMenuDto {
     type: string
 
     /**
-     * Reservado para o Armazenar a Quantidade de Calorias do Menu.. Em Número Decimal.
-     * @example 4150,55
+     * Quantidade de Calorias do Menu.. Em Número Decimal.
+     * @example 4150.55
      */
-    averageCalories: Prisma.Decimal
+    averageCalories: number
 
     /**
-     * Reservado para o Armazenar o Peso... Em Número Decimal.
-     * @example 350,55
+     * Peso da porção... Em Número Decimal.
+     * @example 350.55
      */
-    averageWeight: Prisma.Decimal
+    averageWeight: number
 
     /**
-     * Reservado para o Armazenar o Preço Médio do Menu... Em Número Decimal.
-     * @example 4150,55
+     * Preço Médio do Menu... Em Número Decimal.
+     * @example 4150.55
      */
-    averagePrice: Prisma.Decimal
+    averagePrice: number
 
     /**
      * Reservado para o Nome da Sobremesa Apenas.
@@ -77,7 +77,7 @@ export class LunchMealMenuDto {
     updatedAt: Date | null
 
     /**
-     * Armazena automaticamente a FK para relacionamento... Gerada via UUID
+     * Armazena automaticamente a FK para relacionamento da LunchBox... Gerada via UUID
      * @example a6584e78-508b-4b72-8f40-6e8b3efacbcd
      */
     lunchBoxId: string

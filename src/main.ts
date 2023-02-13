@@ -13,6 +13,7 @@ async function bootstrap() {
     .addTag('Users')
     .addTag('LunchBoxType')
     .addTag('LunchMealMenu')
+    .addTag('OrderForLunchDto')
     .build()
 
   const document = SwaggerModule.createDocument(app, config);

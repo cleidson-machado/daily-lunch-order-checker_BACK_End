@@ -10,32 +10,32 @@ export class LunchMealMenuController {
   constructor(private readonly lunchMealMenuService: LunchMealMenuService) {}
 
   @Post('/add')
-  async create(@Body() data: LunchMealMenuDto) {
+  create(@Body() data: LunchMealMenuDto) {
     return this.lunchMealMenuService.create(data);
   }
 
   @Get('/listAll')
-  async findAll() {
+  findAll() {
     return this.lunchMealMenuService.findAll();
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: string) {
     return this.lunchMealMenuService.findOne(id);
   }
 
   @Put(':id')
-  async updateAllAttributes(@Param('id') id: string, @Body() data: LunchMealMenuDto) {
+  updateAllAttributes(@Param('id') id: string, @Body() data: LunchMealMenuDto) {
     return this.lunchMealMenuService.update(id, data);
   }
 
   @Patch(':id')
-  async updatePartialAttributes(@Param('id') id: string, @Body() data: LunchMealMenuDto) {
+  updatePartialAttributes(@Param('id') id: string, @Body() data: LunchMealMenuDto) {
     return this.lunchMealMenuService.update(id, data);
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: string) {
+  remove(@Param('id') id: string) {
     return this.lunchMealMenuService.remove(id);
   }
 }
