@@ -13,10 +13,11 @@ datasource db {
 //O USUÁRIO
 model User {
   id                String @id @default(uuid())
-  idCompanyEmployee String
+  idCompanyEmployee String @unique
   firstName         String
   lastName          String
   passWord          String
+  email             String @unique
   isActive          Boolean
   createdAt         DateTime? @default(now())
   updatedAt         DateTime?

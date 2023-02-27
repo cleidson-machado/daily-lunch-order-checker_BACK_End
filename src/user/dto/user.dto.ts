@@ -3,7 +3,7 @@
     */
 export class UserDTO {
     /**
-     * Esse atributo é baseado no número de registro do empregado Cassems. Geralmente apenas 04 digitos.
+     * Esse atributo é baseado no número de registro do empregado Cassems. Geralmente apenas 04 digitos. Campo único.
      * @example 1234
      */
     idCompanyEmployee: string;
@@ -25,6 +25,12 @@ export class UserDTO {
      * @example xxxxxxxxxxxxxxxx
      */
     passWord: string;
+
+    /**
+     * Reservado para identificar o Email do Usuário. Campo único.
+     * @example fulano@fakemail.com
+     */
+    email: string;
 
     /**
      * Reservado para identificar quando o usuário está ativo ou não.

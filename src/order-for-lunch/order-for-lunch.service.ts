@@ -15,9 +15,42 @@ export class OrderForLunchService {
     return theOrder;
   }
 
-  //FIND ALL
+  //FIND ALL Return The Related Object.. and just specific Fields
   async findAll() {
-    return await this.prisma.orderForLunch.findMany();
+    return await this.prisma.orderForLunch.findMany({
+      select: {
+            id: true,
+            orderValue: true,
+            amount:true,
+            createdAt: true,
+            updatedAt: true,
+        lunchMeal: { // Return The Related Object
+              select: {
+                name: true,
+                type: true,
+                averageCalories: true,
+                averageWeight: true,
+                averagePrice: true,
+                dessertName: true,
+                nameDayWeek: true,
+                description: true,
+                rateQualityNumber: true,
+                imageLinkPath: true,
+                createdAt: true,
+                updatedAt: true
+              },
+        },
+        userOder: {// Return The Related Object
+            select: {
+              firstName: true,
+              lastName: true,
+              isActive: true,
+              createdAt: true,
+              updatedAt: true
+            },
+        }
+      },
+    });
   }
 
   //FIND ONE
