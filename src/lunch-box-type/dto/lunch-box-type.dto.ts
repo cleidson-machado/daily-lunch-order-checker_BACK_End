@@ -15,6 +15,12 @@ export class LunchBoxTypeDto {
     description: string
 
     /**
+     * Reservado para a Armazenar a URL da Imagem ou Path de Hospedagem da IMG.
+     * @example http://umdominio.com/app/img/menuprint.jpg
+     */
+        imageLinkPath: string
+
+    /**
      * Armazena automaticamente a data de criação do registro.
      * @example 2023-02-07T22:54:19.505Z
      */

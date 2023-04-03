@@ -19,6 +19,12 @@ export class UserController {
     return this.userService.findAll();
   }
 
+  //FIND ALL by NAME OR EMAIL... FOR TEST ON A MODAL ORDER LUNCH...
+  @Get('/listBy/lastNameOrEmail'+'/:txtData')
+  findAllByNameOrEmail(@Param('txtData') txtData: string) {
+    return this.userService.findAllNameOrEmail(txtData);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.userService.findOne(id);

@@ -1,5 +1,13 @@
 import { Controller } from '@nestjs/common';
-import { Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/common/decorators';
+import {
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Put,
+} from '@nestjs/common/decorators';
 import { ApiTags } from '@nestjs/swagger';
 import { LunchMealMenuDto } from './dto/lunch-meal-menu.dto';
 import { LunchMealMenuService } from './lunch-meal-menu.service';
@@ -19,6 +27,23 @@ export class LunchMealMenuController {
     return this.lunchMealMenuService.findAll();
   }
 
+  //TEST 02/02/2023
+  @Get('/listBy/weekDayAndType' + '/:txtWeekData' + '/:txtTypeData')
+  findByWeekNameAndType(
+    @Param('txtWeekData') txtWeekData: string,
+    @Param('txtTypeData') txtTypeData: string,
+  ) {
+    return this.lunchMealMenuService.findOneByNameOfWeekAndByType(
+      txtWeekData,
+      txtTypeData,
+    );
+  }
+
+  @Get('/listBy' + '/:nameDayWeekToday')
+  findByWeekName(@Param('nameDayWeekToday') nameDayWeekToday: string) {
+    return this.lunchMealMenuService.findOneByNameOfWeek(nameDayWeekToday);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.lunchMealMenuService.findOne(id);
@@ -30,7 +55,10 @@ export class LunchMealMenuController {
   }
 
   @Patch(':id')
-  updatePartialAttributes(@Param('id') id: string, @Body() data: LunchMealMenuDto) {
+  updatePartialAttributes(
+    @Param('id') id: string,
+    @Body() data: LunchMealMenuDto,
+  ) {
     return this.lunchMealMenuService.update(id, data);
   }
 

@@ -29,6 +29,7 @@ model LunchBoxType {
   id                String @id @default(uuid())
   name              String //MARMITA NORMAL SIMPLES
   description       String
+  imageLinkPath     String @default("noimage")  //CAMINHO OU URL DA IMAGEN DA MARMITA / EMBALAGEM CADASTRADA
   createdAt         DateTime? @default(now())
   updatedAt         DateTime?
   LunchMealMenu     LunchMealMenu[] //VINCULO VIA SOMENTE CODIGO PRA FECHAR O RELACIONAMENTO
@@ -46,7 +47,7 @@ model LunchMealMenu {
   nameDayWeek       String  //NOME DO DIA DA SEMANA DO MENU
   description       String
   rateQualityNumber Int     //NOTA DE AVALIAÇÃO
-  imageLinkPath     String  //CAMINHO OU URL DA IMAGEN DA MARMITA / CARDÁPIO
+  imageLinkPath     String  //CAMINHO OU URL DA IMAGEN DO MENU / CARDÁPIO
   createdAt         DateTime? @default(now())
   updatedAt         DateTime?
   lunchBox          LunchBoxType @relation(fields: [lunchBoxId], references: [id]) // RELACIONAMENTO
@@ -63,16 +64,18 @@ model OrderForLunch {
   updatedAt         DateTime?
   lunchMeal         LunchMealMenu @relation(fields: [lunchMealId], references: [id]) // RELACIONAMENTO
   lunchMealId       String //CAMPO QUE ARMAZENA A FK
-  userOder          User @relation(fields: [userOderId], references: [id]) // RELACIONAMENTO
-  userOderId        String //CAMPO QUE ARMAZENA A FK
+  userOrder          User @relation(fields: [userOrderId], references: [id]) // RELACIONAMENTO
+  userOrderId        String //CAMPO QUE ARMAZENA A FK
 }
 
 //A TABELA QUE VAI ARMAZENAR OS PARÂMETROS DE CONFIGURALÇÃO
 model AppScopeConfig {
-  id                String @id @default(uuid())
-  userLimitbuy      Int       //O LIMITE DE COMPRAS / PEDIDOS DOS USUÁRIOS POR DIA
-  dailyTimeout      Int       //LIMITE DE TEMPO POR DIA PARA PEDIDOS --> EM MINUTOS.. CONVERSÃO!?
-  startDailyTimeout DateTime?  //INÍCIO DA JANELA DE PEDIDOS DIÁRIA
-  endtDailyTimeout  DateTime?  //FIM DA JANELA DE PEDIDOS DIÁRIA
-  isActive          Boolean   //CONFIGURAÇÃO ATIVA... OBRIGATÓRIO HAVER PELO MENOS UMA ATIVA??.. SE NÃO ACHAR ALGUMA ATIVA ou estiver INATIVA DEIXAR O PADRÃO DO COD.
+  id                  String @id @default(uuid())
+  userLimitbuy        Int         //O LIMITE DE COMPRAS / PEDIDOS DOS USUÁRIOS POR DIA
+  dailyTimeout        Int         //LIMITE DE TEMPO POR DIA PARA PEDIDOS --> EM MINUTOS.. CONVERSÃO!?
+  startDailyTimeout   DateTime?   //INÍCIO DA JANELA DE PEDIDOS DIÁRIA
+  endtDailyTimeout    DateTime?   //FIM DA JANELA DE PEDIDOS DIÁRIA
+  diffWeekendSaturday Boolean     //HABILITAR AVISOS AOS SÁBADOS!
+  diffWeekendSunday   Boolean     //HABILITAR AVISOS AOS DOMINGOS!
+  isActive            Boolean     //CONFIGURAÇÃO ATIVA... OBRIGATÓRIO HAVER PELO MENOS UMA ATIVA??.. SE NÃO ACHAR ALGUMA ATIVA ou estiver INATIVA DEIXAR O PADRÃO DO COD.
 }

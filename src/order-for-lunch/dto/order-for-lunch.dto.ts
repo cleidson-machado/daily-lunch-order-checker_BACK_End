@@ -39,6 +39,6 @@ export class OrderForLunchDto {
      * Armazena automaticamente a FK para relacionamento do Usuário solicitante... Gerada via UUID
      * @example a6584e78-508b-4b72-8f40-6e8b3efacbcd
      */
-    userOderId: string
+    userOrderId: string
 
 }

@@ -20,6 +20,40 @@ async findAll(){
     return await this.prisma.user.findMany();
 }
 
+//FIND ALL by NAME OR EMAIL
+async findAllNameOrEmail( txtData: string ){
+    return await this.prisma.user.findMany({
+        where: {
+                OR: [
+                {
+                    lastName: {
+                        contains: txtData,
+                    },
+                },
+
+                {
+                    email: {
+                        contains: txtData,
+                    },
+                },
+            ]
+        },
+        select: {
+            id: true,
+            idCompanyEmployee: true,
+            firstName: true,
+            lastName: true,
+            email: true,
+            isActive: true,
+            createdAt: true,
+            updatedAt: true
+        },
+        orderBy: {
+            firstName: 'desc',
+          },
+    });
+}
+
 //FIND ONE
 async findOne(id: string) {
 return await this.prisma.user.findUnique({

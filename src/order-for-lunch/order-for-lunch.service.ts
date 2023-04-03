@@ -18,13 +18,13 @@ export class OrderForLunchService {
   //FIND ALL Return The Related Object.. and just specific Fields
   async findAll() {
     return await this.prisma.orderForLunch.findMany({
-      select: {
+      select: { // AQUI É O PEDIDO
             id: true,
             orderValue: true,
             amount:true,
             createdAt: true,
             updatedAt: true,
-        lunchMeal: { // Return The Related Object
+        lunchMeal: { // QUE CONTEM O MENU DA REFEIÇÃO...
               select: {
                 name: true,
                 type: true,
@@ -37,13 +37,23 @@ export class OrderForLunchService {
                 rateQualityNumber: true,
                 imageLinkPath: true,
                 createdAt: true,
-                updatedAt: true
+                updatedAt: true,
+                  lunchBox: { // QUE CONTEM A MARMITA UTILIZADA...
+                      select: {
+                        name: true,
+                        description: true,
+                        imageLinkPath: true,
+                        createdAt: true,
+                        updatedAt: true
+                      }
+                  }
               },
         },
-        userOder: {// Return The Related Object
+        userOrder: {// QUE CONTEM O USUÁRIO SOLICITANTE...
             select: {
               firstName: true,
               lastName: true,
+              email: true,
               isActive: true,
               createdAt: true,
               updatedAt: true
