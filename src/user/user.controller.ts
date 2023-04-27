@@ -1,10 +1,4 @@
-import {
-  BadRequestException,
-  Controller,
-  HttpException,
-  HttpStatus,
-  NotFoundException,
-} from '@nestjs/common';
+import { Controller, NotFoundException } from '@nestjs/common';
 import {
   Body,
   Delete,
@@ -17,7 +11,6 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 import { UserDTO } from './dto/user.dto';
 import { UserService } from './user.service';
-import { notEqual } from 'assert';
 
 @ApiTags('Users')
 @Controller('user')

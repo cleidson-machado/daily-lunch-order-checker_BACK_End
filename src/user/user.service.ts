@@ -1,8 +1,4 @@
-import {
-  BadRequestException,
-  ForbiddenException,
-  Injectable,
-} from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/database/prisma.service';
 import { UserDTO } from 'src/user/dto/user.dto';
 
