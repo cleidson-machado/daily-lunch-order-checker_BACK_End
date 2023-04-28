@@ -8,17 +8,19 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Daily Lunch Order Checker Nestjs / API - Doc. Swagger - V1')
-    .setDescription ('Criação de Documentação Inicial da API que gerencia pedido de refeições...')
+    .setDescription(
+      'Criação de Documentação Inicial da API que gerencia pedido de refeições...',
+    )
     .setVersion('1.0')
     .addTag('Users')
     .addTag('LunchBoxType')
     .addTag('LunchMealMenu')
     .addTag('OrderForLunchDto')
-    .build()
+    .build();
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  await app.listen(3000);
+  await app.listen(80);
 }
 bootstrap();
