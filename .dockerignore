@@ -1,2 +1,7 @@
 node_modules
+documentation
+## prisma ## Don't Remove It
+dist
+test
 .env
+.git
