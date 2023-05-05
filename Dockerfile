@@ -13,6 +13,6 @@ RUN npm install --quite --no-optional --no-fund --loglevel=error
 
 RUN npm run build
 
-EXPOSE 80
+EXPOSE 3000
 
 CMD ["npm", "run", "start:prod"]
